@@ -15,10 +15,37 @@ function setText(selector, value) {
   if (node) node.textContent = value;
 }
 
-function setupOpening(music) {
-  const opening = $("#opening");
-  const letter = $("#letter");
-  const button = $("#openInvite");
+function setupMusicButton() {
+  const button = document.querySelector("#musicToggle");
+  const audio = new Audio("assets/music.mp3");
+  audio.loop = true;
+
+  let isPlaying = false;
+
+  function startMusic() {
+    audio.play();
+    isPlaying = true;
+    button.classList.add("is-playing");
+    button.setAttribute("aria-label", "Pause music");
+  }
+
+  function stopMusic() {
+    audio.pause();
+    isPlaying = false;
+    button.classList.remove("is-playing");
+    button.setAttribute("aria-label", "Play music");
+  }
+
+  button.addEventListener("click", () => {
+    if (isPlaying) stopMusic();
+    else startMusic();
+  });
+
+  return {
+    start: startMusic,
+    stop: stopMusic
+  };
+}
 
   function openInvitation() {
     opening.classList.add("opening--open");
@@ -89,7 +116,7 @@ function setupLinks() {
 
   if (mapLink) mapLink.href = mapUrl;
   if (whatsappLink) {
-    whatsappLink.href = `https://wa.me/?text=${encodeURIComponent(invitation.whatsappText)}`;
+    whatsappLink.href = `https://wa.me/+918129233735?text=Hi`;
   }
 }
 
