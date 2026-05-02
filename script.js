@@ -16,7 +16,7 @@ function setText(selector, value) {
 }
 
 //
-// 🎵 MUSIC (MP3 VERSION ONLY — FIXED)
+// 🎵 MUSIC (UNCHANGED)
 //
 function setupMusicButton() {
   const button = document.querySelector("#musicToggle");
@@ -51,7 +51,7 @@ function setupMusicButton() {
 }
 
 //
-// ✉️ OPENING FIXED (THIS WAS BROKEN BEFORE)
+// ✉️ OPENING (UPDATED ONLY HERE)
 //
 function setupOpening(music) {
   const opening = $("#opening");
@@ -59,14 +59,24 @@ function setupOpening(music) {
   const button = $("#openInvite");
 
   function openInvitation() {
+    const closed = document.getElementById("envelopeClosed");
+    const open = document.getElementById("envelopeOpen");
+
+    // switch images
+    if (closed && open) {
+      closed.style.display = "none";
+      open.classList.remove("hidden");
+    }
+
     opening.classList.add("opening--open");
     letter.setAttribute("aria-expanded", "true");
-    music.start();
 
-    window.setTimeout(() => {
+    // delay for animation
+    setTimeout(() => {
+      music.start();
       opening.classList.add("hidden");
       document.body.classList.remove("locked");
-    }, 720);
+    }, 900);
   }
 
   button.addEventListener("click", openInvitation);
@@ -125,7 +135,7 @@ function getNextJulyFourthAtFiveIst() {
 }
 
 //
-// 🔗 LINKS (RESTORED PROPERLY)
+// 🔗 LINKS (UNCHANGED)
 //
 function setupLinks() {
   const mapUrl = `https://maps.google.com/?q=${encodeURIComponent(invitation.mapQuery)}`;
@@ -162,7 +172,7 @@ function setupRevealAnimations() {
 }
 
 //
-// 🎊 CONFETTI (100% ORIGINAL — NOT TOUCHED)
+// 🎊 CONFETTI (UNCHANGED)
 //
 function setupConfetti() {
   const canvas = $("#confettiCanvas");
