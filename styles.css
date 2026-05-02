@@ -16,6 +16,14 @@
   --sans: "Manrope", sans-serif;
 }
 
+h1, h2, h3 {
+  letter-spacing: 1px;
+}
+
+body {
+  font-weight: 300;
+}
+
 * {
   box-sizing: border-box;
 }
