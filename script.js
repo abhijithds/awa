@@ -20,7 +20,7 @@ function setText(selector, value) {
 //
 function setupMusicButton() {
   const button = document.querySelector("#musicToggle");
-  const audio = new Audio("assets/music.mp3");
+  const audio = new Audio("assets/music1.mp3");
   audio.loop = true;
 
   let isPlaying = false;
