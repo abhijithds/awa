@@ -80,7 +80,7 @@ button {
 .letter {
   position: relative;
   width: min(28rem, 88vw);
-  height: min(20rem, 62vw);
+ height: calc(min(28rem, 90vw) * 0.6);
   perspective: 1000px;
   animation: letterFloat 900ms ease both;
 }
