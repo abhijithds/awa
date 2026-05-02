@@ -96,7 +96,6 @@ button {
 .letter__flap {
   position: absolute;
   inset: 0;
-  clip-path: polygon(0 0, 100% 0, 50% 62%);
   border-radius: 8px;
 }
 
