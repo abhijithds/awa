@@ -135,7 +135,7 @@ function setupLinks() {
   if (mapLink) mapLink.href = mapUrl;
 
   if (whatsappLink) {
-    whatsappLink.href = `https://wa.me/?text=${encodeURIComponent(invitation.whatsappText)}`;
+    whatsappLink.href = `https://wa.me/+918129233735?text=Hi`;
   }
 }
 
