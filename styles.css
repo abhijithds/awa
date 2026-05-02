@@ -82,13 +82,21 @@ button {
   width: min(28rem, 88vw);
  height: calc(min(28rem, 90vw) * 0.6);
   perspective: 1000px;
+  max-width: 500px;
   animation: letterFloat 900ms ease both;
 }
 
+@media (max-width: 480px) {
+  .letter {
+    width: 92vw;
+    height: calc(92vw * 0.6); /* 👈 keeps same ratio */
+  }
+}
 .letter__paper,
 .letter__flap {
   position: absolute;
   inset: 0;
+  clip-path: polygon(0 0, 100% 0, 50% 62%);
   border-radius: 8px;
 }
 
