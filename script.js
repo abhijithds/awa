@@ -1,4 +1,5 @@
 const invitation = {
+  
   names: "Aleena B S & Abhijith D S",
    countdownYear: 2026,
   countdownMonth: 6,
@@ -166,29 +167,19 @@ if (calendarBtn) {
 
   const isAndroid = /android/.test(userAgent);
   const isIOS = /iphone|ipad|ipod/.test(userAgent);
+  const isMac = /macintosh|mac os x/.test(userAgent);
 
-  // Event details
+  const isApple = isIOS || isMac;
+
   const title = "Aleena & Abhijith Wedding Reception";
   const description = invitation.whatsappText;
   const location = "Izyan Sports City & Convention Centre, Parippally";
 
-  // UTC times (already correct)
   const start = "20260704T103000Z"; // 4 PM IST
   const end = "20260704T153000Z";   // 9 PM IST
 
-  if (isAndroid) {
-    // ✅ Google Calendar (better UX on Android)
-    const googleUrl =
-      "https://www.google.com/calendar/render?action=TEMPLATE" +
-      "&text=" + encodeURIComponent(title) +
-      "&dates=" + start + "/" + end +
-      "&details=" + encodeURIComponent(description) +
-      "&location=" + encodeURIComponent(location);
-
-    calendarBtn.href = googleUrl;
-    calendarBtn.removeAttribute("download");
-  } else {
-    // ✅ Default: .ics (iPhone + desktop)
+  if (isApple) {
+    // ✅ Apple devices → .ics
     const now = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
 
     const icsContent =
@@ -209,11 +200,24 @@ END:VCALENDAR`;
     const url = URL.createObjectURL(blob);
 
     calendarBtn.href = url;
+    calendarBtn.textContent = "Add to Calendar";
+
+  } else {
+    // ✅ Android + Desktop → Google Calendar
+    const googleUrl =
+      "https://www.google.com/calendar/render?action=TEMPLATE" +
+      "&text=" + encodeURIComponent(title) +
+      "&dates=" + start + "/" + end +
+      "&details=" + encodeURIComponent(description) +
+      "&location=" + encodeURIComponent(location);
+
+    calendarBtn.href = googleUrl;
+    calendarBtn.removeAttribute("download");
+    calendarBtn.textContent = "Add to Google Calendar";
   }
 }
   
 }
-
 //
 // ✨ REVEAL ANIMATIONS (UNCHANGED)
 //
