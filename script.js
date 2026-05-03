@@ -1,5 +1,6 @@
 const invitation = {
   names: "Aleena B S & Abhijith D S",
+   countdownYear: 2026,
   countdownMonth: 6,
   countdownDay: 4,
   countdownHourIst: 16,
@@ -89,40 +90,44 @@ function setupOpening(music) {
 // ⏳ COUNTDOWN (UNCHANGED)
 //
 function startCountdown() {
-  const target = getNextJulyFourthAtFiveIst().getTime();
+  const target = getEventDateIst().getTime();
   const ids = ["days", "hours", "minutes", "seconds"];
 
   function render() {
-    const diff = Math.max(0, target - Date.now());
-    const values = [
-      Math.floor(diff / 86400000),
-      Math.floor((diff / 3600000) % 24),
-      Math.floor((diff / 60000) % 60),
-      Math.floor((diff / 1000) % 60)
-    ];
+   const diff = Math.max(0, target - Date.now());
 
-    ids.forEach((id, index) => {
-      setText(`#${id}`, String(values[index]).padStart(2, "0"));
-    });
+  if (diff === 0) {
+    setText("#countdownStatus", "The celebration has begun 🎉");
+    document.querySelector(".countdown").style.display = "none";
+    return;
   }
 
-  render();
-  window.setInterval(render, 1000);
-}
+  const values = [
+    Math.floor(diff / 86400000),
+    Math.floor((diff / 3600000) % 24),
+    Math.floor((diff / 60000) % 60),
+    Math.floor((diff / 1000) % 60)
+  ];
 
-function getNextJulyFourthAtFiveIst() {
-  const now = new Date();
-  const currentYear = now.getFullYear();
+  ids.forEach((id, index) => {
+    setText(`#${id}`, String(values[index]).padStart(2, "0"));
+  });
+}
+}
+function getEventDateIst() {
   const targetUtcHour = invitation.countdownHourIst - 5;
   const targetUtcMinute = 30;
 
-  let target = new Date(Date.UTC(currentYear, invitation.countdownMonth, invitation.countdownDay, targetUtcHour, targetUtcMinute, 0));
-
-  if (target.getTime() <= now.getTime()) {
-    target = new Date(Date.UTC(currentYear + 1, invitation.countdownMonth, invitation.countdownDay, targetUtcHour, targetUtcMinute, 0));
-  }
-
-  return target;
+  return new Date(
+    Date.UTC(
+      invitation.countdownYear,
+      invitation.countdownMonth,
+      invitation.countdownDay,
+      targetUtcHour,
+      targetUtcMinute,
+      0
+    )
+  );
 }
 
 //
@@ -253,8 +258,11 @@ function setupConfetti() {
 // 🚀 INIT (UNCHANGED)
 //
 const music = setupMusicButton();
+
 setupOpening(music);
 setupLinks();
 startCountdown();
+render();
+window.setInterval(render, 1000);
 setupRevealAnimations();
 setupConfetti();
