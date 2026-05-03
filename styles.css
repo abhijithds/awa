@@ -284,12 +284,10 @@ button {
 }
 
 .hero__content {
+  width: min(60rem, 100%); /* ✅ single source of truth */
   margin-top: -2rem;
   position: relative;
   z-index: 1;
-  align-self: center;
-  justify-self: center;
-  width: min(70rem, 100%);
   padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 6vw, 6rem);
   text-align: center;
   animation: riseIn 900ms ease 220ms both;
