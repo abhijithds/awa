@@ -46,6 +46,20 @@ function setupMusicButton() {
     else startMusic();
   });
 
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    // tab is minimized / switched
+    if (isPlaying) {
+      audio.pause();
+    }
+  } else {
+    // tab is active again
+    if (isPlaying) {
+      audio.play().catch(() => {});
+    }
+  }
+});
+  
   return {
     start: startMusic,
     stop: stopMusic
