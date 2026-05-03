@@ -2,10 +2,10 @@ const invitation = {
   names: "Aleena B S & Abhijith D S",
   countdownMonth: 6,
   countdownDay: 4,
-  countdownHourIst: 17,
+  countdownHourIst: 16,
   mapQuery: "Izyan Sports City & Convention Centre Parippally",
   whatsappText:
-    "Together with their families, Aleena B S and Abhijith D S warmly invite you to their wedding reception on Friday, 4 July 2025, 4:00 PM onwards at Izyan Sports City & Convention Centre, Parippally."
+    "Together with their families, Aleena B S and Abhijith D S warmly invite you to their wedding reception on Friday, 4 July 2026, 4:00 PM onwards at Izyan Sports City & Convention Centre, Parippally."
 };
 
 const $ = (selector) => document.querySelector(selector);
