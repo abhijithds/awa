@@ -221,9 +221,7 @@ button {
 
 .hero {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
   min-height: 100vh;
   overflow: hidden;
   color: #fffaf4;
@@ -242,31 +240,32 @@ button {
 }
 
 .hero-music {
-  position: fixed;
-  top: 1.5rem;
-  right: 1.5rem;
-  z-index: 9999;
-  width: 3rem;
-  height: 3rem;
+  position: absolute;
+  top: clamp(1rem, 3vw, 2rem);
+  right: clamp(1rem, 3vw, 2rem);
+  z-index: 3;
   display: grid;
   place-items: center;
+  width: 2.7rem;
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 250, 244, 0.32);
   border-radius: 50%;
-  border: none;
-  background: rgba(118, 44, 66, 0.9); /* 🔥 stronger color */
-  color: #fff;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-  backdrop-filter: blur(10px);
+  color: #fffaf4;
+  background: rgba(42, 32, 34, 0.34);
+  backdrop-filter: blur(14px);
   cursor: pointer;
+  box-shadow: 0 14px 34px rgba(24, 18, 14, 0.2);
+  transition: opacity 220ms ease, transform 220ms ease, background 220ms ease;
 }
 
 .hero-music:hover {
-  transform: scale(1.1);
-  background: #762c42;
+  transform: translateY(-1px);
+  background: rgba(118, 44, 66, 0.45);
 }
 
 .hero-music svg {
-  width: 1.4rem;
-  height: 1.4rem;
+  width: 1.22rem;
+  height: 1.22rem;
   fill: currentColor;
   stroke: currentColor;
   stroke-width: 1.8;
@@ -284,11 +283,12 @@ button {
 }
 
 .hero__content {
-  width: min(60rem, 100%); /* ✅ single source of truth */
-  margin-top: -2rem;
   position: relative;
   z-index: 1;
-  padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 6vw, 6rem);
+  align-self: center;
+  justify-self: center;
+  width: min(70rem, 100%);
+  padding: clamp(6rem, 12vw, 9rem) clamp(1rem, 6vw, 6rem);
   text-align: center;
   animation: riseIn 900ms ease 220ms both;
 }
