@@ -213,7 +213,7 @@ END:VCALENDAR`;
 
     calendarBtn.href = googleUrl;
     calendarBtn.removeAttribute("download");
-    calendarBtn.textContent = "Add to Google Calendar";
+    calendarBtn.textContent = "Add to Calendar";
   }
 }
   
