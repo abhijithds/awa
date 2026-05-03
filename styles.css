@@ -313,6 +313,9 @@ button {
   letter-spacing: 0;
 }
 
+.save-date .primary-button {
+  margin-top: 1.2rem;
+}
 .hero h1 {
   display: grid;
   gap: clamp(0.1rem, 1vw, 0.35rem);
