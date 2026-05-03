@@ -2,7 +2,7 @@ const invitation = {
   names: "Aleena B S & Abhijith D S",
   countdownMonth: 6,
   countdownDay: 4,
-  countdownHourIst: 16,
+  countdownHourIst: 17,
   mapQuery: "Izyan Sports City & Convention Centre Parippally",
   whatsappText:
     "Together with their families, Aleena B S and Abhijith D S warmly invite you to their wedding reception on Friday, 4 July 2025, 4:00 PM onwards at Izyan Sports City & Convention Centre, Parippally."
@@ -45,21 +45,6 @@ function setupMusicButton() {
     else startMusic();
   });
 
-document.addEventListener("visibilitychange", () => {
-  if (document.hidden) {
-    audio.pause();
-  } else {
-    if (isPlaying) {
-      audio.play().catch(() => {});
-    }
-  }
-});
-
-return {
-  start: startMusic,
-  stop: stopMusic
-};
-  
   return {
     start: startMusic,
     stop: stopMusic
@@ -264,14 +249,12 @@ function setupConfetti() {
   });
 }
 
-
 //
 // 🚀 INIT (UNCHANGED)
 //
 const music = setupMusicButton();
 setupOpening(music);
 setupLinks();
-setText("#countdownStatus", "4 July, 4:00 PM");
 startCountdown();
 setupRevealAnimations();
 setupConfetti();
