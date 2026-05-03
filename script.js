@@ -6,7 +6,7 @@ const invitation = {
   countdownHourIst: 16,
   mapQuery: "Izyan Sports City & Convention Centre Parippally",
   whatsappText:
-    "Together with their families, Aleena B S and Abhijith D S warmly invite you to their wedding reception on Friday, 4 July 2026, 4:00 PM onwards at Izyan Sports City & Convention Centre, Parippally."
+    "We warmly invite you to the wedding reception of Aleena B. S. and Abhijith D. S. on Friday, 4 July 2026, from 4:00 PM onwards at Izyan Sports City & Convention Centre, Parippally."
 };
 
 const $ = (selector) => document.querySelector(selector);
@@ -159,6 +159,32 @@ function setupLinks() {
   if (whatsappLink) {
     whatsappLink.href = `https://wa.me/+918129233735?text=Hi`;
   }
+
+const icsBtn = $("#icsCalendarBtn");
+
+if (icsBtn) {
+  const now = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+
+  const icsContent =
+`BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+UID:${Date.now()}@wedding
+DTSTAMP:${now}
+SUMMARY:Aleena & Abhijith Wedding Reception
+DESCRIPTION:${invitation.whatsappText}
+LOCATION:Izyan Sports City & Convention Centre, Parippally
+DTSTART:20260704T103000Z
+DTEND:20260704T153000Z
+END:VEVENT
+END:VCALENDAR`;
+
+  const blob = new Blob([icsContent], { type: "text/calendar" });
+  const url = URL.createObjectURL(blob);
+
+  icsBtn.href = url;
+}
+  
 }
 
 //
