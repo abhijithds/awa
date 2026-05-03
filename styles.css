@@ -226,7 +226,8 @@ button {
 .hero {
   position: relative;
   display: grid;
-  min-height: 60vh;
+  min-height: 100vh; /* 👈 change this */
+  place-items: center; /* 👈 add this */
   overflow: hidden;
   color: #fffaf4;
   background: var(--charcoal);
