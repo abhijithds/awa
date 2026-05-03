@@ -45,6 +45,21 @@ function setupMusicButton() {
     else startMusic();
   });
 
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    audio.pause();
+  } else {
+    if (isPlaying) {
+      audio.play().catch(() => {});
+    }
+  }
+});
+
+return {
+  start: startMusic,
+  stop: stopMusic
+};
+  
   return {
     start: startMusic,
     stop: stopMusic
@@ -249,12 +264,37 @@ function setupConfetti() {
   });
 }
 
+
+function setupFloatingMusicButton() {
+  const button = document.querySelector("#musicToggle");
+  let lastScrollY = window.scrollY;
+
+  window.addEventListener("scroll", () => {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      // scrolling down → hide slightly
+      button.style.transform = "translateY(-10px)";
+      button.style.opacity = "0.7";
+    } else {
+      // scrolling up → show fully
+      button.style.transform = "translateY(0)";
+      button.style.opacity = "1";
+    }
+
+    lastScrollY = currentScrollY;
+  });
+}
+
+
 //
 // 🚀 INIT (UNCHANGED)
 //
 const music = setupMusicButton();
 setupOpening(music);
 setupLinks();
+setText("#countdownStatus", "4 July, 4:00 PM");
+setupFloatingMusicButton();
 startCountdown();
 setupRevealAnimations();
 setupConfetti();
