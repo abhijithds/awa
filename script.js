@@ -132,16 +132,21 @@ function startCountdown() {
   window.setInterval(render, 1000);
 }
 function getEventDateIst() {
-  const targetUtcHour = invitation.countdownHourIst - 5;
-  const targetUtcMinute = 30;
+  let hour = invitation.countdownHourIst - 5;
+  let minute = -30;
+
+  if (minute < 0) {
+    minute += 60;
+    hour -= 1;
+  }
 
   return new Date(
     Date.UTC(
       invitation.countdownYear,
       invitation.countdownMonth,
       invitation.countdownDay,
-      targetUtcHour,
-      targetUtcMinute,
+      hour,
+      minute,
       0
     )
   );
