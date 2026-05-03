@@ -113,6 +113,8 @@ function startCountdown() {
     setText(`#${id}`, String(values[index]).padStart(2, "0"));
   });
 }
+  render();
+  window.setInterval(render, 1000);
 }
 function getEventDateIst() {
   const targetUtcHour = invitation.countdownHourIst - 5;
@@ -262,7 +264,5 @@ const music = setupMusicButton();
 setupOpening(music);
 setupLinks();
 startCountdown();
-render();
-window.setInterval(render, 1000);
 setupRevealAnimations();
 setupConfetti();
