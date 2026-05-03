@@ -288,7 +288,7 @@ button {
 }
 
 .hero__content {
-  transform: translateY(-30px);
+  transform: translateY(-50px);
   position: relative;
   z-index: 1;
   align-self: center;
