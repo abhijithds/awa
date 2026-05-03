@@ -160,29 +160,56 @@ function setupLinks() {
     whatsappLink.href = `https://wa.me/+918129233735?text=Hi`;
   }
 
-const icsBtn = $("#icsCalendarBtn");
+const calendarBtn = $("#icsCalendarBtn");
+if (calendarBtn) {
+  const userAgent = navigator.userAgent.toLowerCase();
 
-if (icsBtn) {
-  const now = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+  const isAndroid = /android/.test(userAgent);
+  const isIOS = /iphone|ipad|ipod/.test(userAgent);
 
-  const icsContent =
+  // Event details
+  const title = "Aleena & Abhijith Wedding Reception";
+  const description = invitation.whatsappText;
+  const location = "Izyan Sports City & Convention Centre, Parippally";
+
+  // UTC times (already correct)
+  const start = "20260704T103000Z"; // 4 PM IST
+  const end = "20260704T153000Z";   // 9 PM IST
+
+  if (isAndroid) {
+    // ✅ Google Calendar (better UX on Android)
+    const googleUrl =
+      "https://www.google.com/calendar/render?action=TEMPLATE" +
+      "&text=" + encodeURIComponent(title) +
+      "&dates=" + start + "/" + end +
+      "&details=" + encodeURIComponent(description) +
+      "&location=" + encodeURIComponent(location);
+
+    calendarBtn.href = googleUrl;
+    calendarBtn.removeAttribute("download");
+  } else {
+    // ✅ Default: .ics (iPhone + desktop)
+    const now = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+
+    const icsContent =
 `BEGIN:VCALENDAR
 VERSION:2.0
 BEGIN:VEVENT
 UID:${Date.now()}@wedding
 DTSTAMP:${now}
-SUMMARY:Aleena & Abhijith Wedding Reception
-DESCRIPTION:${invitation.whatsappText}
-LOCATION:Izyan Sports City & Convention Centre, Parippally
-DTSTART:20260704T103000Z
-DTEND:20260704T153000Z
+SUMMARY:${title}
+DESCRIPTION:${description}
+LOCATION:${location}
+DTSTART:${start}
+DTEND:${end}
 END:VEVENT
 END:VCALENDAR`;
 
-  const blob = new Blob([icsContent], { type: "text/calendar" });
-  const url = URL.createObjectURL(blob);
+    const blob = new Blob([icsContent], { type: "text/calendar" });
+    const url = URL.createObjectURL(blob);
 
-  icsBtn.href = url;
+    calendarBtn.href = url;
+  }
 }
   
 }
