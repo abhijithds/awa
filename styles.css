@@ -240,11 +240,10 @@ button {
 }
 
 .hero-music {
-  background: red !important;
-  position: fixed; /* ✅ stays on screen always */
+  position: fixed; /* ✅ KEY FIX */
   top: clamp(1rem, 3vw, 2rem);
   right: clamp(1rem, 3vw, 2rem);
-  z-index: 1000;
+  z-index: 1000; /* higher than hero */
   display: grid;
   place-items: center;
   width: 2.7rem;
@@ -252,6 +251,7 @@ button {
   border: 1px solid rgba(255, 250, 244, 0.32);
   border-radius: 50%;
   color: #fffaf4;
+  background: rgba(42, 32, 34, 0.34);
   backdrop-filter: blur(14px);
   cursor: pointer;
   box-shadow: 0 14px 34px rgba(24, 18, 14, 0.2);
