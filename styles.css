@@ -1,4 +1,5 @@
 :root {
+  color-scheme: light;
   --ink: #241719;
   --muted: #806d68;
   --paper: #fff8f4;
@@ -14,6 +15,7 @@
   --script: "Great Vibes", cursive;
   --serif: "Cormorant Garamond", Georgia, serif;
   --sans: Manrope, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  
 }
 
 * {
@@ -27,6 +29,7 @@ html {
 body {
   margin: 0;
   color: var(--ink);
+  background-color: #fff8f4;
   background:
     radial-gradient(circle at top, rgba(232, 190, 184, 0.32), transparent 28rem),
     linear-gradient(180deg, #fff8f4 0%, #f7e8e4 48%, #fffaf6 100%);
@@ -97,6 +100,7 @@ button {
   position: absolute;
   inset: 0;
   border-radius: 8px;
+  background-color: #fff8f4;
 }
 
 .letter__paper {
