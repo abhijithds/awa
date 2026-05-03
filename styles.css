@@ -240,10 +240,10 @@ button {
 }
 
 .hero-music {
-  position: absolute;
+  position: fixed; /* ✅ FLOATS ALWAYS */
   top: clamp(1rem, 3vw, 2rem);
   right: clamp(1rem, 3vw, 2rem);
-  z-index: 3;
+  z-index: 1000;
   display: grid;
   place-items: center;
   width: 2.7rem;
